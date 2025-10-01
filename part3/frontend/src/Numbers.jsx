@@ -1,0 +1,17 @@
+const Numbers = ({filterNames, deletePerson}) => {
+    return(
+        <div>
+            {filterNames.map(person =>
+            <li key={person.id}>
+                {person.name}  {person.number}
+                <button onClick={() => deletePerson(person.id, person.name)}>delete</button>
+                
+                
+            </li>)
+            
+            }
+            
+        </div>
+    )
+}
+export default Numbers
