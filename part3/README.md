@@ -1,1 +1,1 @@
-link https://fullstack-open-icff.onrender.com/api/persons https://fullstack-open-icff.onrender.com/
+link  https://fullstack-open-icff.onrender.com/
