@@ -4,6 +4,7 @@ import Filter from './Filter'
 import Numbers from './Numbers'
 import Functionality from './Functionality'
 import Notification from './Notification'
+import './index.css'
 
 
 const App = () => {
@@ -12,6 +13,8 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [newSearch, setSearch] = useState('')
   const [addMessage, setAdd] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
+
   useEffect(()=> {
     Functionality
       .getData()
@@ -97,7 +100,11 @@ const App = () => {
         console.log(response)
       })
       .catch(error=> {
-        console.log(error)
+        console.log(error.response?.data ||error.message)
+        setErrorMessage(error.response?.data?.error)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
       })
   }
 
@@ -124,7 +131,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-        <Notification message={addMessage}/>
+        <Notification message={addMessage} type = "success"/>
+        <Notification message={errorMessage} type = "error"/>
         <div>
           <Filter
           newSearch={newSearch}
