@@ -9,7 +9,7 @@ test('dummy returns one', () => {
   assert.strictEqual(result, 1)
 })
 
-// Testi: Blogien tykkäysten yhteismäärä
+// Testi:Blogien tykkäysten yhteismäärä
 
 describe('total likes', () => {
   const listWithOneBlog = [
