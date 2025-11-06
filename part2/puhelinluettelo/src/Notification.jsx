@@ -5,6 +5,8 @@ const Notification = ({message}) =>
     }
     return(
         <div className="notification">{message}</div>
+        
     )
+    console.log(message)
     }
 export default Notification

@@ -5,6 +5,7 @@ if (process.argv.length < 3) {
   process.exit(1)
 }
 
+//Salasanan lukeminen terminaalista
 const password = process.argv[2]
 
 const url = `mongodb+srv://santleht_db_user:${password}@cluster0.xwqik6d.mongodb.net/PersonApp?retryWrites=true&w=majority`
@@ -29,6 +30,8 @@ if(process.argv.length === 3){
         mongoose.connection.close()
     })
 }
+
+//Uuden henkilön lisääminen 
 
 else if (process.argv.length === 5){
     const personObject = new person({

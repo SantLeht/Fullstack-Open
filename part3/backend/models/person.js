@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 mongoose.set("strictQuery", false)
 
 
+// Yhteys mongoDB tietokantaan .env urlilla (salaus)
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Yhdistetty MongoDB:hen")
@@ -11,6 +12,7 @@ mongoose.connect(process.env.MONGODB_URI)
     console.error("MongoDB-yhteys epäonnistui:", error.message)
   })
 
+// Skeema henkilölle
 const personSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -20,6 +22,8 @@ const personSchema = new mongoose.Schema({
   number: String
 })
 
+
+// Muokataan JSONia
 personSchema.set("toJSON", {
   transform: (document, personObject) => {
     personObject.id = personObject._id.toString()

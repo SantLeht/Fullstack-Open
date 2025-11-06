@@ -10,11 +10,13 @@ const api = supertest(app)
 
 const config = require('../utils/config')
 
+
 before(async () => {
   await mongoose.connect(config.MONGODB_URI)
 })
 
 
+// Tyhjennetään blogit ja lisätään yksi testiblogi
 beforeEach(async () => {
   await Blogi.deleteMany({})
   await Blogi.create({
@@ -25,7 +27,7 @@ beforeEach(async () => {
   })
 })
 
-//testit
+//Testi: varmistetaan, että blogit palautuvat oikein.
 
 test('blogs are returned as json', async () => {
   const response = await api
@@ -40,6 +42,8 @@ test('blogs are returned as json', async () => {
     }
 })
 
+//Testi: tarkistetaan blogien id-kenttä
+
 test("id testi ", async () =>{
   const response = await api.get("/api/blogs")
     
@@ -53,6 +57,8 @@ test("id testi ", async () =>{
     }
   }
 })
+
+// Testi: uuden blogin lisääminen
 
 test("add new blog", async () => {
   const newBlog = {
@@ -85,6 +91,8 @@ test("add new blog", async () => {
   console.log("Blog added")
 })
 
+
+// Testi: blogin poistaminen
 test("delete test", async ()=>{
   const blogs = await Blogi.find({})
   const blogsToDelete = blogs[0]

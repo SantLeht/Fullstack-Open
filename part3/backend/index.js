@@ -6,19 +6,28 @@ const cors = require("cors")
 const path = require("path")
 const Person = require("./models/person")
 const { request } = require("http")
+
+
+//middlewaret
 app.use(express.json())
 app.use(morgan("tiny"))
 app.use(cors())
 
 app.use(express.static(path.join(__dirname, 'build')))
+
+
+//Reititykset
+
 app.get('/', (request, response) => {
   response.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
+//Henkilöiden hakeminen
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(persons => response.json(persons))
 })
 
+//Infosivu 
 app.get('/info', (request, response) => {
     Person.countDocuments({}).then(count => {
         const date = new Date()
@@ -29,6 +38,7 @@ app.get('/info', (request, response) => {
     
 })
 
+//Yksittäinen henkilö ID:n avulla
 app.get('/api/persons/:id', (request, response, next) => {
     Person.findById(request.params.id)
     .then (person =>{
@@ -40,12 +50,16 @@ app.get('/api/persons/:id', (request, response, next) => {
     })
     .catch(error => next(error))
 })
+
+// Henkilön poisto ID:n perusteella
 app.delete('/api/persons/:id', (request, response, next) => {
     Person.findByIdAndDelete(request.params.id)
         .then (() => response.status(204).end())
         .catch(error=> next(error))
 })
 
+
+// Uuden henkilön lisääminen
 app.post('/api/persons', (request, response, next) => {
 
     const {name, number} = request.body
@@ -65,6 +79,7 @@ app.post('/api/persons', (request, response, next) => {
     
 })
 
+// Henkilötiedon päivittäminen
 app.put('/api/persons/:id', (request, response, next)=>{
     const {name, number} = request.body
     
@@ -81,6 +96,7 @@ app.put('/api/persons/:id', (request, response, next)=>{
         .catch(error => next(error))
 })
 
+// Virheidenkäsittely
 const errorHandler = (error, request, response, next) =>{
     console.error(error.message)
     

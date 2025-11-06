@@ -15,6 +15,10 @@ const App = () => {
   const [addMessage, setAdd] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
 
+
+  
+  //datan haku palvelimelta
+
   useEffect(()=> {
     Functionality
       .getData()
@@ -26,6 +30,8 @@ const App = () => {
     })
   },[])
 
+
+   //Virheilmoitukset
 
   const alertName = (name) => {
     alert(`${name} is already added to phonebook`)
@@ -53,6 +59,7 @@ const App = () => {
           number: newNumber
         }
         
+        //Tietojen päivittäminen
 
         Functionality
           .updatePerson(existingPerson.id, updatedPerson)
@@ -71,6 +78,8 @@ const App = () => {
     }
     return
   }
+
+    //Duplikaattien tarkistus
 
     const duplicateName = persons.some(person => person?.name == newName)
     if(duplicateName){

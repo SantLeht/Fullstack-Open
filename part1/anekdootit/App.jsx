@@ -29,7 +29,7 @@ const App = () => {
   
   const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
   
-
+  // Äänien hallinta
   const handleVote = () => {
     const copy = [...votes]
     copy[selected] += 1
@@ -39,7 +39,8 @@ const App = () => {
   const mathMax = Math.max(...votes)
   const indexMax = votes.indexOf(mathMax)
   
-  
+  // Näytetään anekdootti jolla eniten ääniä
+  console.log(anecdotes[indexMax])
   
   return (
     <div>
@@ -49,10 +50,12 @@ const App = () => {
       <Button onClick = {() => setSelected(Math.floor(Math.random()*anecdotes.length))}
         onVote={handleVote}/>
       <h1>Anecdote with most votes</h1>
-      <p>{anecdotes[indexMax]}</p>
+      <p>{anecdotes[indexMax]}</p> 
       <p>has {mathMax} votes</p>
+      
     </div>
   )
 }
+
 
 export default App

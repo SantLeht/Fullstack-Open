@@ -19,7 +19,10 @@ const Content = (props) => {
 };
 const Total = (props) => {
   return <p>Total: {props.part1.exercises + props.part2.exercises + props.part3.exercises}</p>
+  
+
 }
+
 
 
 const App = () => {

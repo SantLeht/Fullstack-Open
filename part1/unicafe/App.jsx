@@ -23,6 +23,7 @@ const StatisticLine = ({text, value}) =>(
 
 const Statistics = ({goodcount, neutralcount, badcount}) => {
 
+  //lasketaan palautteiden kokonaismäärät
   const total = goodcount + neutralcount + badcount;
 
   if(total == 0){
@@ -37,6 +38,7 @@ const Statistics = ({goodcount, neutralcount, badcount}) => {
   const all = goodcount + neutralcount + badcount;
   const average = ((goodcount - badcount) / total);
   const positive = (goodcount /total *100 + "%")
+  console.log(positive)
 
 
   return (
